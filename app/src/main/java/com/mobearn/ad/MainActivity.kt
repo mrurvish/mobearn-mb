@@ -1,13 +1,17 @@
 package com.mobearn.ad
 
+import android.animation.ValueAnimator
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mobearn.ad.databinding.ActivityMainBinding
+import java.io.File
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -31,5 +39,20 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        val filename = "/data/data/com.mobearn.ad/files/myfile.txt"
+
+
+        if(File(filename).exists())
+        {
+
+        }
+        else
+        {
+            applicationContext.openFileOutput(com.mobearn.ad.ui.notifications.filename, Context.MODE_PRIVATE).use {
+                it?.write("0".toByteArray())
+            }
+        }
     }
+
 }
+

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1045" />
+        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable/border.xml" value="0.1215" />
+        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable/bordertext.xml" value="0.185" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable/ic_baseline_account_balance_24.xml" value="0.1045" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1215" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1045" />
@@ -14,8 +16,8 @@
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_bank.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_dashboard.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_deshboard.xml" value="0.1" />
-        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_home.xml" value="0.12" />
-        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_notifaction.xml" value="0.12590579710144928" />
+        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_notifaction.xml" value="0.138442521631644" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/Users/STUD/AndroidStudioProjects/mobern-mb/app/src/main/res/menu/bottom_nav_menu.xml" value="0.196875" />
       </map>

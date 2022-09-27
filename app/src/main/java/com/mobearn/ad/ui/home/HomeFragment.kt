@@ -1,11 +1,12 @@
 package com.mobearn.ad.ui.home
 
 import android.os.Bundle
+import android.view.*
+import android.view.MotionEvent.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import com.mobearn.ad.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -34,7 +35,10 @@ class HomeFragment : Fragment() {
         val youtube = youtube
         val instagram = instagram
         val webview= WebView
+        val movie= button_movie
+        val layout = movies
         youtube.setOnClickListener {
+            layout.visibility=View.GONE
             webview.webViewClient= WebViewClient()
             webview.settings.javaScriptEnabled = true
             webview.loadUrl("https://www.youtube.com/")
@@ -43,6 +47,7 @@ class HomeFragment : Fragment() {
             webview.visibility=View.VISIBLE
         }
         instagram.setOnClickListener {
+            layout.visibility=View.GONE
             webview.webViewClient= WebViewClient()
             webview.settings.javaScriptEnabled = true
             webview.loadUrl("https://www.instagram.com/")
@@ -50,5 +55,21 @@ class HomeFragment : Fragment() {
             webview.getSettings().setAllowFileAccess(true);
             webview.visibility=View.VISIBLE
         }
-    }
+        movie.setOnClickListener {
+            layout.visibility=View.VISIBLE
+        }
+        webview.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                if ((keyCode == KeyEvent.KEYCODE_BACK) && event.action === ACTION_UP && webview.canGoBack()) {
+                    //  handler.sendEmptyMessage(1)
+                    return true
+                }
+                return false
+            }
+
+        })
+
+
+
+}
 }
