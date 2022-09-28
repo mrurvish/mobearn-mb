@@ -11,6 +11,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mobearn.ad.databinding.ActivityMainBinding
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val filename = "/data/data/com.mobearn.ad/files/myfile.txt"
-
-
+        val sdf = SimpleDateFormat("dd")
+        val currentDate = sdf.format(Date())
         if(File(filename).exists())
         {
 
@@ -52,6 +54,29 @@ class MainActivity : AppCompatActivity() {
                 it?.write("0".toByteArray())
             }
         }
+        val datefile = "/data/data/com.mobearn.ad/files/datefile.txt"
+        if(File(datefile).exists())
+        {
+
+        }
+        else
+        {
+            applicationContext.openFileOutput(com.mobearn.ad.ui.notifications.datefile, Context.MODE_PRIVATE).use {
+                it?.write("0".toByteArray())
+            }
+        }
+        val incrfile = "/data/data/com.mobearn.ad/files/incrfile.txt"
+        if(File(incrfile).exists())
+        {
+
+        }
+        else
+        {
+            applicationContext.openFileOutput(com.mobearn.ad.ui.notifications.incrfile, Context.MODE_PRIVATE).use {
+                it?.write("0".toByteArray())
+            }
+        }
+
     }
 
 }
