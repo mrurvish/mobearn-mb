@@ -64,8 +64,8 @@ class NotifactionFragment : Fragment() {
         }
         incr.text=incrdat
 
-       val spin = button_spin
-            spin.setOnClickListener {
+
+            button_spin.setOnClickListener {
 
                 value()
 
@@ -207,7 +207,7 @@ class NotifactionFragment : Fragment() {
 
 
 
-        conslayout1.visibility=View.GONE
+        conslayout1.visibility=View.INVISIBLE
         colectlayout.visibility=View.VISIBLE
             textView2.text= point.toString()
         collect.setOnClickListener {
@@ -220,7 +220,7 @@ class NotifactionFragment : Fragment() {
                 it?.write(filedata.toString().toByteArray())
             }
             textView3.text = filedata.toString()
-            colectlayout.visibility = View.GONE
+            colectlayout.visibility = View.INVISIBLE
             conslayout1.visibility = View.VISIBLE
         }
 
