@@ -1,7 +1,8 @@
 package com.mobearn.ad.ui.home
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.view.MotionEvent.*
@@ -11,19 +12,18 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.mobearn.ad.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.json.JSONArray
-import org.json.JSONException
+import kotlin.math.abs
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,8 +38,18 @@ class HomeFragment : Fragment() {
     lateinit var courseIV: ImageView
     lateinit var courseNameTV: TextView
     lateinit var loadingPB: ProgressBar
+
+
+    private lateinit var  viewPager2: ViewPager2
+    private lateinit var handler : Handler
+    private lateinit var imageList:ArrayList<Int>
+    private lateinit var adapter: ImageAdapter
+
+
+
   //  private var requestQueue: RequestQueue? = null
     var url = "https://mobearn.000webhostapp.com/admin/movie.php"
+    var image: String=""
 
 
     override fun onCreateView(
@@ -104,17 +114,27 @@ class HomeFragment : Fragment() {
 
                 val jsonobject = response.getJSONObject(1)
                 val name = jsonobject.getString("Moviename")
-                val image = jsonobject.getString("Poster")
+                image = jsonobject.getString("Poster")
                // val courseName: String = response.getString("Banner")
                 courseNameTV.text= name
                 // on below line we are setting
                 // image view from image url.
-                Picasso.get().load(image).into(courseIV)
+                val myi = Picasso.get().load(image).into(courseIV)
                 // on below line we are changing
                 // visibility for our button.
               //  visitCourseBtn.visibility = View.VISIBLE
                 // on below line we are adding
                 // click listener for our button.
+                init()
+                setUpTransformer()
+                viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        handler.removeCallbacks(runnable)
+                        handler.postDelayed(runnable , 2000)
+                    }
+                })
+
             } catch (e: Exception) {
                 // on below line we are
                 // handling our exception.
@@ -147,6 +167,57 @@ class HomeFragment : Fragment() {
 
 
 }
+    override fun onPause() {
+        super.onPause()
+
+        handler.removeCallbacks(runnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        handler.postDelayed(runnable , 2000)
+    }
+
+    private val runnable = Runnable {
+        viewPager2.currentItem = viewPager2.currentItem + 1
+    }
+
+    private fun setUpTransformer(){
+        val transformer = CompositePageTransformer()
+        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer { page, position ->
+            val r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.14f
+        }
+
+        viewPager2.setPageTransformer(transformer)
+    }
+
+    private fun init(){
+        viewPager2 = viewPager2
+        handler = Handler(Looper.myLooper()!!)
+        imageList = ArrayList()
+
+        imageList.add()
+        imageList.add()
+        imageList.add()
+        imageList.add()
+        imageList.add()
+        imageList.add()
+        imageList.add()
+        imageList.add()
+
+
+        adapter = ImageAdapter(imageList, viewPager2)
+
+        viewPager2.adapter = adapter
+        viewPager2.offscreenPageLimit = 3
+        viewPager2.clipToPadding = false
+        viewPager2.clipChildren = false
+        viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
+    }
     /*private fun jsonParse() {
         val url = "https://mobearn.000webhostapp.com/admin/movie.php"
         val request = JsonObjectRequest(Request.Method.GET, url, null, {
