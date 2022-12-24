@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
     </WebView>
 
@@ -77,33 +77,42 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        tools:context=".ui.home.HomeFragment">
 
         <ImageView
             android:id="@+id/idIVCourse"
-            android:layout_width="395dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="26dp"
-            app:layout_constraintBottom_toTopOf="@+id/urltv"
+            android:layout_width="303dp"
+            android:layout_height="109dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.06" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/urltv"
             android:layout_width="383dp"
             android:layout_height="69dp"
-            android:layout_marginBottom="222dp"
+            android:layout_marginBottom="448dp"
             android:text="hello::"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idIVCourse" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="253dp"
+            android:layout_height="48dp"
+            android:text="TextView"
+            android:textColor="#070707"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/urltv" />
 
 
         <!--on below line we are creating a
@@ -126,15 +135,13 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
-        android:layout_width="304dp"
-        android:layout_height="456dp"
+        android:layout_width="321dp"
+        android:layout_height="281dp"
         android:paddingStart="80dp"
         android:paddingEnd="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/idLoadingPB" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

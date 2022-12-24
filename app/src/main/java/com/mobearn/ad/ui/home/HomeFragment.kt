@@ -1,8 +1,10 @@
 package com.mobearn.ad.ui.home
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings.Global
 import android.util.Log
 import android.view.*
 import android.view.MotionEvent.*
@@ -12,6 +14,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -42,14 +45,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var  viewPager2: ViewPager2
     private lateinit var handler : Handler
-    private lateinit var imageList:ArrayList<Int>
+    private lateinit var imageList:ArrayList<Bitmap>
     private lateinit var adapter: ImageAdapter
-
 
 
   //  private var requestQueue: RequestQueue? = null
     var url = "https://mobearn.000webhostapp.com/admin/movie.php"
-    var image: String=""
+    var image: String? = null
+    var imageurl: String = ""
 
 
     override fun onCreateView(
@@ -62,6 +65,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val youtube = youtube
         val instagram = instagram
         val webview= WebView
@@ -115,31 +119,39 @@ class HomeFragment : Fragment() {
                 val jsonobject = response.getJSONObject(1)
                 val name = jsonobject.getString("Moviename")
                 image = jsonobject.getString("Poster")
+
+
                // val courseName: String = response.getString("Banner")
                 courseNameTV.text= name
                 // on below line we are setting
                 // image view from image url.
-                val myi = Picasso.get().load(image).into(courseIV)
+                Picasso.get().load(image).into(courseIV)
                 // on below line we are changing
                 // visibility for our button.
               //  visitCourseBtn.visibility = View.VISIBLE
                 // on below line we are adding
                 // click listener for our button.
+                print()
+
+
+
+
+
                 init()
                 setUpTransformer()
-                viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        handler.removeCallbacks(runnable)
-                        handler.postDelayed(runnable , 2000)
-                    }
-                })
+
+
+
+
+
+
 
             } catch (e: Exception) {
                 // on below line we are
                 // handling our exception.
                 e.printStackTrace()
             }
+
         }, { error ->
             // this method is called when we get
             // any error while fetching data from our API
@@ -148,9 +160,21 @@ class HomeFragment : Fragment() {
             Toast.makeText(activity, "Fail to get response", Toast.LENGTH_SHORT).show()
 
         })
-        // at last we are adding
-        // our request to our queue.
+
+
+
+
         queue.add(request)
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                handler.removeCallbacks(runnable)
+                handler.postDelayed(runnable , 2000)
+            }
+        })
+
+
+
 
 
        /* webview.setOnKeyListener(object : View.OnKeyListener {
@@ -167,17 +191,26 @@ class HomeFragment : Fragment() {
 
 
 }
+    fun print()
+    {
+        textView6.text = image
+    }
+    override fun onResume() {
+
+        super.onResume()
+        handler.postDelayed(runnable , 100)
+
+    }
+
     override fun onPause() {
-        super.onPause()
+
 
         handler.removeCallbacks(runnable)
+        super.onPause()
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        handler.postDelayed(runnable , 2000)
-    }
+
 
     private val runnable = Runnable {
         viewPager2.currentItem = viewPager2.currentItem + 1
@@ -198,15 +231,9 @@ class HomeFragment : Fragment() {
         viewPager2 = viewPager2
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
+            val item1 =Picasso.get().load(image).get()
+        imageList.add(item1)
 
-        imageList.add()
-        imageList.add()
-        imageList.add()
-        imageList.add()
-        imageList.add()
-        imageList.add()
-        imageList.add()
-        imageList.add()
 
 
         adapter = ImageAdapter(imageList, viewPager2)
@@ -218,25 +245,9 @@ class HomeFragment : Fragment() {
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
     }
-    /*private fun jsonParse() {
-        val url = "https://mobearn.000webhostapp.com/admin/movie.php"
-        val request = JsonObjectRequest(Request.Method.GET, url, null, {
-                response ->try {
-            val jsonArray = response.getJSONArray("")
-            for (i in 0 until jsonArray.length()) {
-                val employee = jsonArray.getJSONObject(i)
-                val firstName = employee.getString("Banner")
-                urltv.text = firstName
 
 
-            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-        },Response.ErrorListener { error -> error.printStackTrace() })
-        requestQueue?.add(request)*/
-
-    }
+}
 
 
 

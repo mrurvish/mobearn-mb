@@ -3,6 +3,7 @@ package com.mobearn.ad
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mobearn.ad.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,7 +20,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var handler : Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
