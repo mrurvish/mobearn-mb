@@ -10,17 +10,15 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="415dp"
-        android:layout_height="70dp"
+        android:layout_width="393dp"
+        android:layout_height="65dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,50 +67,41 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/movies"
-        android:layout_width="409dp"
-        android:layout_height="670dp"
+        android:layout_width="401dp"
+        android:layout_height="788dp"
+        android:layout_marginTop="65dp"
         android:background="#B82C2C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.4"
         tools:context=".ui.home.HomeFragment">
 
-        <ImageView
-            android:id="@+id/idIVCourse"
-            android:layout_width="303dp"
-            android:layout_height="109dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/urltv"
-            android:layout_width="383dp"
-            android:layout_height="69dp"
-            android:layout_marginBottom="448dp"
-            android:text="hello::"
-            android:textColor="#000000"
-            android:textSize="24sp"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/slider"
+            android:layout_width="315dp"
+            android:layout_height="444dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idIVCourse" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.438" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="253dp"
-            android:layout_height="48dp"
-            android:text="TextView"
-            android:textColor="#070707"
-            android:textSize="24sp"
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="141dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="4dp"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/urltv" />
+            app:layout_constraintTop_toBottomOf="@+id/slider" />
 
 
         <!--on below line we are creating a
@@ -132,16 +121,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
-        android:layout_width="321dp"
-        android:layout_height="281dp"
-        android:paddingStart="80dp"
-        android:paddingEnd="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idLoadingPB" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
