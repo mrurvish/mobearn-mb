@@ -115,7 +115,7 @@
         <Button
             android:id="@+id/watch"
             android:layout_width="159dp"
-            android:layout_height="43dp"
+            android:layout_height="48dp"
             android:layout_marginBottom="60dp"
             android:text="Watch Movies"
             app:layout_constraintBottom_toBottomOf="parent"
