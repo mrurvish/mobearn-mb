@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,8 +15,9 @@
         android:roundIcon="@drawable/_483bada_15e9_496c_9db1_b08dd6e53276"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobearnmb"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -26,6 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.home.Watchmovies"
+            android:exported="true" />
+
     </application>
 
 </manifest>

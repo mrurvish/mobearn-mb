@@ -1,47 +1,33 @@
 package com.mobearn.ad.ui.home
 
-import android.graphics.Bitmap
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.provider.Settings.Global
 import android.util.Log
 import android.view.*
 import android.view.MotionEvent.*
-import android.view.View.inflate
-import androidx.fragment.app.Fragment
 import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.inflate
-import androidx.databinding.ViewDataBinding
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.mobearn.ad.R
-import com.mobearn.ad.databinding.ActivityMainBinding
-import com.mobearn.ad.databinding.ActivityMainBinding.inflate
-import com.mobearn.ad.databinding.FragmentBankBinding.inflate
-import com.mobearn.ad.databinding.FragmentDeshboardBinding.inflate
 import com.mobearn.ad.databinding.FragmentHomeBinding
-import com.squareup.picasso.Picasso
+
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.zip.Inflater
-import kotlin.math.abs
+import android.content.Intent as Intent1
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,14 +61,10 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.getRoot()
+        return binding.root
        // return inflater.inflate(R.layout.fragment_home, container, false)
     }
     private var onImageChangeCallBack = object : ViewPager2.OnPageChangeCallback(){
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -99,8 +81,8 @@ class HomeFragment : Fragment() {
             webview.webViewClient = WebViewClient()
             webview.settings.javaScriptEnabled = true
             webview.loadUrl("https://www.youtube.com/")
-            webview.getSettings().setAllowContentAccess(true);
-            webview.getSettings().setAllowFileAccess(true);
+            webview.settings.allowContentAccess = true
+            webview.settings.allowFileAccess = true
             webview.visibility = View.VISIBLE
         }
         instagram.setOnClickListener {
@@ -108,8 +90,8 @@ class HomeFragment : Fragment() {
             webview.webViewClient = WebViewClient()
             webview.settings.javaScriptEnabled = true
             webview.loadUrl("https://www.instagram.com/")
-            webview.getSettings().setAllowContentAccess(true);
-            webview.getSettings().setAllowFileAccess(true);
+            webview.settings.allowContentAccess = true
+            webview.settings.allowFileAccess = true
             webview.visibility = View.VISIBLE
         }
         movie.setOnClickListener {
@@ -213,7 +195,10 @@ class HomeFragment : Fragment() {
 
 
 
-
+        watch.setOnClickListener {
+            val intent = Intent(activity, Watchmovies::class.java)
+            startActivity(intent)
+        }
 
 
 
@@ -233,6 +218,7 @@ class HomeFragment : Fragment() {
             }
 
         })*/
+
 
 
 
