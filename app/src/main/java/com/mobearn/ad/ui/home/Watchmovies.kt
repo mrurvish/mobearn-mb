@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.MediaController
 import android.widget.VideoView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobearn.ad.R
 
 class Watchmovies : AppCompatActivity() {
@@ -19,34 +21,31 @@ class Watchmovies : AppCompatActivity() {
         setContentView(R.layout.activity_watchmovies)
 
 
-        videoView = findViewById(R.id.videoView);
-
-        // on below line we are creating
-        // uri for our video view.
-        val uri: Uri = Uri.parse(videoUrl)
-
-        // on below line we are setting
-        // video uri for our video view.
-        videoView.setVideoURI(uri)
-
-        // on below line we are creating variable
-        // for media controller and initializing it.
-        val mediaController = MediaController(this)
-
-        // on below line we are setting anchor
-        // view for our media controller.
-        mediaController.setAnchorView(this.videoView)
-
-        // on below line we are setting media player
-        // for our media controller.
-        mediaController.setMediaPlayer(this.videoView)
-
-        // on below line we are setting media
-        // controller for our video view.
-        this.videoView.setMediaController(mediaController)
 
         // on below line we are
         // simply starting our video view.
+
+
+        // getting the recyclerview by its id
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
+
+        // this creates a vertical layout Manager
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ItemsViewModel>()
+
+        // This loop will create 20 Views containing
+        // the image with the count of view
+        for (i in 1..3) {
+            data.add(ItemsViewModel(R.drawable.ic_baseline_account_circle_24, "Item " + i))
+        }
+
+        // This will pass the ArrayList to our Adapter
+        val adapter = CustomAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        recyclerview.adapter = adapter
 
     }
 }
