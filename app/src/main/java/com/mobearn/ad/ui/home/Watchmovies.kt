@@ -29,7 +29,7 @@ class Watchmovies : AppCompatActivity() {
     // a variable for our video url.
     var videoUrl =
         "https://firebasestorage.googleapis.com/v0/b/mobearn-b981d.appspot.com/o/Movie%2FDoctor%20Strange%20in%20the%20Multiverse%20of%20Madness%20(Hindi)%202022.mp4?alt=media&token=bdc2aefb-57de-4843-8519-68d6b2e38903"
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.mobearn.ad.R.layout.activity_watchmovies)

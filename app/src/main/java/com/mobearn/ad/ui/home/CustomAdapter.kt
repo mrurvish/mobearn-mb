@@ -3,10 +3,12 @@ package com.mobearn.ad.ui.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.ColorSpace
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -70,48 +72,28 @@ class CustomAdapter( val mList: List<ItemsViewModel>) : RecyclerView.Adapter<Cus
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
 
-        private var mPlayer: SimpleExoPlayer? = null
-          var playerView: PlayerView? = null
+       // val simpleExoPlayer: ExoPlayer = itemView.findViewById(com.mobearn.ad.R.id.videoplayer)
+        private var playerView: PlayerView = itemView.findViewById(com.mobearn.ad.R.id.videoplayer)
         //val textView: TextView = itemView.findViewById(R.id.textView8)
-
+        private lateinit var exoPlayer: SimpleExoPlayer
         @SuppressLint("NotConstructor")
-        fun ViewHolder(itemView: View) {
+
             //super(itemView)
 
-             playerView = itemView.findViewById(com.mobearn.ad.R.id.videoplayer)
-        }
+
+
 
          fun initPlayer(URL : String) {
-             try {
-                 // playerView = itemView.findViewById(R.id.videoplayer)
-                 playerView = itemView.findViewById(com.mobearn.ad.R.id.videoplayer)
-                 // Create a player instance.
-                 mPlayer = SimpleExoPlayer.Builder(Watchmovies().baseContext).build()
 
-                 // Bind the player to the view.
-                 playerView?.player = mPlayer
-
-                 //setting exoplayer when it is ready.
-                 mPlayer!!.playWhenReady = true
-                 val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
-
-                 // Create a progressive media source pointing to a stream uri.
-                 val mediaSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-                     .createMediaSource(MediaItem.fromUri(URL))
-                 // Set the media source to be played.
-                 mPlayer!!.setMediaSource(mediaSource)
-
-                 // Prepare the player.
-                 mPlayer!!.prepare()
-
-
-                 // Create a data source factory.
-             }
-             catch (e: java.lang.Exception){
-
-             }
+             exoPlayer = SimpleExoPlayer.Builder(itemView.context).build()
+             playerView.player = this.exoPlayer
+             val mediaUri = Uri.parse(URL)
+             val mediaItem =MediaItem.fromUri(mediaUri)
+             exoPlayer.addMediaItem(mediaItem)
+             exoPlayer.prepare()
+            // exoPlayer.playWhenReady=true
 
 
         }
